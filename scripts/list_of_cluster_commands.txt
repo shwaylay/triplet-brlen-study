@@ -1,0 +1,7 @@
+show_qos
+show_assoc
+show_nodes
+sinfo
+alias
+squeue
+scontrol show job <job id>

@@ -1,0 +1,11 @@
+Download mammalian simulated data set from
+
+	https://doi.org/10.1093/bioinformatics/btab428
+
+by going to google drive
+
+	https://drive.google.com/drive/folders/16hvfh4LjnvT9jTI54lXUi_t--pSCSxtI
+
+and clicking download on the directory called 37-taxon.
+
+

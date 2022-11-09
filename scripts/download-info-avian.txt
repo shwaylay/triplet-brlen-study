@@ -1,0 +1,34 @@
+EKM downloaded avian simulated data set from
+
+	https://doi.org/10.1093/bioinformatics/btab428
+
+by going to google drive
+
+	https://drive.google.com/drive/folders/16hvfh4LjnvT9jTI54lXUi_t--pSCSxtI
+
+and clicking download on the directories called 48-taxon and 48TAXON-AVIAN-SIMULATED-TRUE.
+
+EKM downloaded the true species tree with branch lengths from
+
+	https://sites.google.com/eng.ucsd.edu/datasets/binning
+
+by clicking on the file avian-model-species.tre.
+
+
+EKM noticed that some other files were missing
+
+	2X-1000-true/R14/ - DONE
+
+	1X-1000-true/R5/  - DONE
+	1X-1000-true/R9/  - DONE
+	1X-1000-true/R10/ - DONE
+
+	1X-200-true/R3/   - DONE
+	1X-200-true/R9/   - DONE
+
+were downloaded them from 
+
+	https://sites.google.com/eng.ucsd.edu/datasets/binning
+
+and clicking on avian-1X-truegt.tar.bz2 and avian-2X-truegt.tar.bz2 files.
+
