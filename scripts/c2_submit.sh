@@ -1,7 +1,9 @@
 #!/bin/bash
 
-exit
-
+#exit
+GROUPDIR="/fs/cbcb-lab/ekmolloy"
+PROJECTDIR="$GROUPDIR/msuehle/triplet-brlen-study"
+OUTDIR="$PROJECTDIR/job_output/c2"
 # Mammalian simulated data set
 
 for DO in 1 2 3; do
@@ -36,8 +38,8 @@ for SCAL in ${SCALS[@]}; do
             echo "Submitting $MODL/$REPL..."
             sbatch \
                 --job-name="c2.$MODL.$REPL" \
-                --output="c2.$MODL.$REPL.%j.out" \
-                --error="c2.$MODL.$REPL.%j.err" \
+                --output="$OUTDIR/c2.$MODL.$REPL.%j.out" \
+                --error="$OUTDIR/c2.$MODL.$REPL.%j.err" \
                 --export=SCAL="$SCAL",NGEN="$NGEN",NBPS="$NBPS",REPL="$REPL" \
             c2_drive.sbatch
             done

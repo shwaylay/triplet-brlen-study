@@ -10,7 +10,7 @@
 #SBATCH --cpus-per-task=12
 #SBATCH --mem=36gb
 #SBATCH --exclusive
-#SBATCH --time=04:00:00
+#SBATCH --time=18:00:00
 
 lscpu
 cat /proc/meminfo

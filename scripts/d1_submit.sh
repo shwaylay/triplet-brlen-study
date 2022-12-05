@@ -1,10 +1,14 @@
 #!/bin/bash
 
-exit
+#exit
+GROUPDIR="/fs/cbcb-lab/ekmolloy"
+PROJECTDIR="$GROUPDIR/msuehle/triplet-brlen-study"
+OUTDIR="$PROJECTDIR/job_output/d1"
 
 # Avian simulated data set
 
-for DO in 1 2; do
+for DO in 1 2
+do
 
 if [ $DO -eq 1 ]; then
     # (a) and (d)
@@ -31,12 +35,12 @@ for SCAL in ${SCALS[@]}; do
             echo "Submitting $MODL/$REPL..."
             sbatch \
                 --job-name="d1.$MODL.$REPL" \
-                --output="d1.$MODL.$REPL.%j.out" \
-                --error="d1.$MODL.$REPL.%j.err" \
+                --output="$OUTDIR/d1.$MODL.$REPL.%j.out" \
+                --error="$OUTDIR/d1.$MODL.$REPL.%j.err" \
                 --export=SCAL="$SCAL",NGEN="$NGEN",NBPS="$NBPS",REPL="$REPL" \
             d1_drive.sbatch
             done
-        exit
+        #exit
         done
     done
 done

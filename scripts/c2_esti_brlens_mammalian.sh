@@ -16,7 +16,12 @@ PROJECTDIR="$GROUPDIR/msuehle/triplet-brlen-study"
 ASTRAL3DIR="$GROUPDIR/group/software/ASTRAL_v5.7.8/Astral"
 ASTRAL3=astral.5.7.8.jar
 MPEST="$GROUPDIR/group/software/mp-est_v2.1/src/mpest"
-# ToDo: Add paths to other methods
+PYTHON="$PROJECTDIR/tools/msuehle/bin/python"
+TRIPS="$PROJECTDIR/tools/compute_triplets.py"
+# MPEST Tools
+GETCONTROL="$PROJECTDIR/tools/generate_control_file.py"
+CORRECT="$PROJECTDIR/tools/correct_MPEST.py"
+REFORMAT="$PROJECTDIR/tools/reformat_MPEST.py"
 
 # Define input and output files
 DIR="$PROJECTDIR/data/mahbub2021wqfm/37-taxon-mammalian-simulated/$MODL/$REPL"
@@ -43,7 +48,40 @@ if [ ! -e $OUTPUT ]; then
          -o $OUTPUT
 fi
 
-# ToDo: Run MP-EST
+# Run MP-EST
+OUTPUT="$DIR/mpest_scored.model_species_tree.tre"
+CONTROL_FILE="${OUTPUT}-control"
+NEW_GTRE_FILE="rooted_gene_trees.tre"
+cp $GTRE_FILE $NEW_GTRE_FILE
+
+if [ ! -e $OUTPUT ]; then
+    # Make control file
+    $PYTHON $GETCONTROL \
+        -g $NEW_GTRE_FILE \
+        -s $STRE_FILE \
+        -o $CONTROL_FILE
+
+    # Run MPEST
+    $MPEST $CONTROL_FILE
+
+    # Correct MPEST output
+    MPESTOUT="${DIR}/MPESTout.txt"
+    $PYTHON $CORRECT -t ${NEW_GTRE_FILE}_besttree.tre -o $MPESTOUT
+
+    # Reformat the corrected file
+    $PYTHON $REFORMAT -t $MPESTOUT -o $OUTPUT
+
+    rm $CONTROL_FILE
+    rm $MPESTOUT
+    rm ${GTRE_FILE}_besttree.tre
+    rm $NEW_GTRE_FILE
+fi
 
 # ToDo: Run other methods
-
+# Run Trips
+OUTPUT="$DIR/trips_scored.model_species_tree.tre"
+if [ ! -e $OUTPUT ]; then
+    $PYTHON $TRIPS -g $GTRE_FILE \
+	           -s $STRE_FILE \
+	           -o $OUTPUT
+fi
